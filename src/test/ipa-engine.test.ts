@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { dictionary } from "cmu-pronouncing-dictionary";
-import { CmuEngine } from "./cmu-engine";
-import { compareTranscription, formatPronunciation } from "./transcribe";
+import { CmuEngine } from "@/lib/ipa/cmu-engine";
+import { compareTranscription, formatPronunciation } from "@/lib/ipa/transcribe";
 
 const engine = new CmuEngine(dictionary as Record<string, string>);
 const fmt = (w: string, a: "us" | "uk", syl = false) =>
