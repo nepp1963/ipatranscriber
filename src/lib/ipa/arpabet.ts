@@ -73,9 +73,9 @@ export function parseArpabet(arpa: string): Phone[] {
     .filter(Boolean)
     .map((p) => {
       const m = /^([A-Z]+)([012])?$/.exec(p);
-      const base = m ? m[1] : p;
+      const base = m ? m[1]! : p;
       const stress = (m && m[2] ? Number(m[2]) : 0) as 0 | 1 | 2;
-      return { base, stress, vowel: VOWELS.has(base) };
+      return { base, stress, vowel: VOWELS.has(base!) };
     });
 }
 
@@ -94,9 +94,9 @@ export function arpabetToPronunciation(arpa: string, accent: Accent, spelling = 
     const stressed = p.stress > 0;
     if (p.base === "AH") ipa[i] = stressed ? "ʌ" : "ə";
     else if (p.base === "ER") ipa[i] = accent === "us" ? (stressed ? "ɝ" : "ɚ") : stressed ? "ɜː" : "ə";
-    else if (accent === "us") ipa[i] = US_V[p.base];
+    else if (accent === "us") ipa[i] = US_V[p.base]!;
     else {
-      let v = UK_V[p.base];
+      let v = UK_V[p.base]!;
       if (p.base === "AA" && phones[i + 1]?.base !== "R" && isLotSpelling(word)) v = "ɒ";
       if (p.base === "AE" && stressed && !bathUsed && isBathWord(word)) {
         v = "ɑː";
@@ -104,7 +104,7 @@ export function arpabetToPronunciation(arpa: string, accent: Accent, spelling = 
       }
       if (p.base === "IY" && !stressed && i === lastVowelIdx) v = "i";
       if (p.base === "UW" && !stressed) v = "u";
-      ipa[i] = v;
+      ipa[i] = v!;
     }
     if (p.base === "IY" && !stressed && accent === "us") ipa[i] = "i";
   });
@@ -117,7 +117,7 @@ export function arpabetToPronunciation(arpa: string, accent: Accent, spelling = 
       if (next && next.vowel) return;
       const prev = phones[i - 1];
       if (prev && prev.vowel && UK_R[prev.base]) {
-        ipa[i - 1] = prev.base === "AH" && prev.stress === 0 ? "ə" : UK_R[prev.base].replace(/r$/, "");
+        ipa[i - 1] = prev.base === "AH" && prev.stress === 0 ? "ə" : UK_R[prev.base]!.replace(/r$/, "");
         if (prev.base === "AH" && prev.stress > 0) ipa[i - 1] = "ɜː";
       }
       ipa[i] = "";
@@ -150,6 +150,6 @@ function syllabify(phones: Phone[], ipa: string[]): Syllable[] {
   return nuclei.map((n, k) => {
     const from = starts[k];
     const to = k + 1 < starts.length ? starts[k + 1] : phones.length;
-    return { ipa: ipa.slice(from, to).join(""), stress: phones[n].stress };
+    return { ipa: ipa.slice(from, to).join(""), stress: phones[n]!.stress };
   });
 }
