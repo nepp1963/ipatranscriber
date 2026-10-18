@@ -17,7 +17,7 @@ export function TeacherView({ text, lines, accent, preservePunctuation }: { text
                 <p className="mt-1 text-lg">{original[i]}</p>
                 <p className="font-ipa mt-1 text-xl text-primary">/{tokensToText(tokens, preservePunctuation).trim()}/</p>
               </div>
-              <Button size="icon" variant="outline" onClick={() => speak(original[i], accent)} aria-label={`Hear line ${i + 1}`}><Volume2 /></Button>
+              <Button size="icon" variant="outline" onClick={() => speak(original[i] ?? "", accent)} aria-label={`Hear line ${i + 1}`}><Volume2 /></Button>
             </div>
             <ul className="mt-3 flex flex-wrap gap-2" aria-label="Word by word">
               {tokens.filter((t) => t.kind === "word").map((t, j) => (

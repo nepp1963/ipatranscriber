@@ -8,7 +8,7 @@ const SIBILANT = new Set(["S", "Z", "SH", "ZH", "CH", "JH"]);
 
 function lastPhone(arpa: string) {
   const parts = arpa.trim().split(/\s+/);
-  return parts[parts.length - 1].replace(/\d/g, "");
+  return parts[parts.length - 1]!.replace(/\d/g, "");
 }
 
 /** Pronunciation engine backed by the CMU Pronouncing Dictionary (~134k words). */
