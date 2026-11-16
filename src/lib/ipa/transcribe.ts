@@ -29,7 +29,8 @@ export function tokenize(
   for (const m of text.matchAll(TOKEN_RE)) {
     if (m[1]) {
       const pron = engine.lookup(m[1], accent);
-      tokens.push({ kind: "word", text: m[1], pron, ipa: pron ? formatPronunciation(pron, opts) : m[1] });
+      const ipa = pron ? `/${formatPronunciation(pron, opts)}/` : m[1];
+      tokens.push({ kind: "word", text: m[1], pron, ipa });
     } else if (m[2]) tokens.push({ kind: "space", text: m[2] });
     else tokens.push({ kind: "punct", text: m[3]! });
   }

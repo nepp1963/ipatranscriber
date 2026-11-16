@@ -15,7 +15,7 @@ export function TeacherView({ text, lines, accent, preservePunctuation }: { text
               <div className="min-w-0">
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Line {i + 1}</p>
                 <p className="mt-1 text-lg">{original[i]}</p>
-                <p className="font-ipa mt-1 text-xl text-primary">/{tokensToText(tokens, preservePunctuation).trim()}/</p>
+                <p className="font-ipa mt-1 text-xl text-primary">{tokensToText(tokens, preservePunctuation).trim()}</p>
               </div>
               <Button size="icon" variant="outline" onClick={() => speak(original[i] ?? "", accent)} aria-label={`Hear line ${i + 1}`}><Volume2 /></Button>
             </div>

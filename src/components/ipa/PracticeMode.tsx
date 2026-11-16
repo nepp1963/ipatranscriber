@@ -45,7 +45,7 @@ export function PracticeMode({ ready }: { ready: boolean }) {
                 <div className="text-sm">
                   <p className="font-semibold">{r.word}</p>
                   <p>You: <span className="font-ipa text-base">{r.given || "—"}</span></p>
-                  {!r.correct && <p>Expected: <span className="font-ipa text-base text-primary">{r.expected.join("  or  ") || "unavailable"}</span></p>}
+                  {!r.correct && <p>Expected: <span className="font-ipa text-base text-primary">{r.expected.length ? r.expected.map((ipa) => `/${ipa}/`).join("  or  ") : "unavailable"}</span></p>}
                 </div>
               </li>
             ))}

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { dictionary } from "cmu-pronouncing-dictionary";
 import { CmuEngine } from "@/lib/ipa/cmu-engine";
-import { compareTranscription, formatPronunciation } from "@/lib/ipa/transcribe";
+import { compareTranscription, formatPronunciation, tokenize, tokensToText } from "@/lib/ipa/transcribe";
 
 const engine = new CmuEngine(dictionary as Record<string, string>);
 const fmt = (w: string, a: "us" | "uk", syl = false) =>
@@ -26,6 +26,10 @@ describe("IPA engine", () => {
   });
   it("unknown words return null", () => {
     expect(engine.lookup("qzxvbn", "us")).toBeNull();
+  });
+  it("wraps each generated word transcription in forward slashes", () => {
+    const tokens = tokenize("the", engine, "us", { showStress: true, showSyllables: false });
+    expect(tokensToText(tokens, true)).toBe("/ðə/");
   });
   it("practice comparison ignores stress unless strict", () => {
     expect(compareTranscription("hello", "həloʊ", engine, false).score).toBe(100);
