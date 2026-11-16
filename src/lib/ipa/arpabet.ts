@@ -135,6 +135,7 @@ function syllabify(phones: Phone[], ipa: string[]): Syllable[] {
   for (let k = 1; k < nuclei.length; k++) {
     const a = nuclei[k - 1];
     const b = nuclei[k];
+    if (a === undefined || b === undefined) continue;
     const cluster = phones.slice(a + 1, b).map((p) => p.base);
     let onsetLen = 0;
     for (let len = Math.min(3, cluster.length); len >= 1; len--) {

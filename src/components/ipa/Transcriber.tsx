@@ -58,7 +58,10 @@ export function Transcriber() {
   }, [settled, a, ready]);
 
   const onCopy = useCallback(async () => {
-    if (!ipaText.trim()) return toast.error("Nothing to copy yet.");
+    if (!ipaText.trim()) {
+      toast.error("Nothing to copy yet.");
+      return;
+    }
     if (await copyText(ipaText)) toast.success("IPA copied successfully.");
   }, [ipaText]);
   const onClear = useCallback(() => {
