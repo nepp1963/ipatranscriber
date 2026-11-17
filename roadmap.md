@@ -1,0 +1,3 @@
+- [ ] Add a saved language selector for the requested 16 interface languages.
+- [ ] Translate the home tools and informational pages while keeping transcription English-only.
+- [ ] Add localization tests, run relevant checks, inspect preview health, and commit the changes.
