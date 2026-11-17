@@ -38,10 +38,17 @@ export function Footer() {
         <p>© {new Date().getFullYear()} IPA Transcriber. Built for ESL learners &amp; teachers.</p>
         <nav aria-label="Footer" className="flex gap-6">
           <Link to="/about" className="hover:text-foreground">About</Link>
+          <Link to="/manual" className="hover:text-foreground">User manual</Link>
           <Link to="/privacy" className="hover:text-foreground">Privacy</Link>
           <Link to="/contact" className="hover:text-foreground">Contact</Link>
         </nav>
       </div>
+      <p className="border-t py-4 text-center text-sm text-muted-foreground">
+        IPA Transcriber by{" "}
+        <a href="https://web.facebook.com/neppnft/" target="_blank" rel="noreferrer" className="font-medium text-foreground underline underline-offset-4 hover:text-primary">
+          nepp1963
+        </a>
+      </p>
     </footer>
   );
 }

@@ -10,3 +10,5 @@
 <!-- LOVABLE:END -->
 
 Mount shared theme state at the root so theme controls behave consistently across routes.
+
+Keep informational pages as top-level file routes and link them from the shared footer.
