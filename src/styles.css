@@ -7,7 +7,9 @@
 @theme inline {
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Sora", "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-ipa: "Charis SIL", "Doulos SIL", "Gentium Plus", "Noto Sans", "Segoe UI", "Lucida Sans Unicode", "Arial Unicode MS", serif;
+  --font-ipa:
+    "Charis SIL", "Doulos SIL", "Gentium Plus", "Noto Sans", "Segoe UI", "Lucida Sans Unicode",
+    "Arial Unicode MS", serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -82,9 +84,11 @@
   --input: oklch(0.89 0.015 270);
   --ring: oklch(0.6 0.2 277);
   --gradient-brand: linear-gradient(120deg, oklch(0.51 0.23 277), oklch(0.68 0.14 215));
-  --gradient-hero: radial-gradient(60% 70% at 15% 10%, oklch(0.9 0.07 277 / 0.6), transparent 70%),
+  --gradient-hero:
+    radial-gradient(60% 70% at 15% 10%, oklch(0.9 0.07 277 / 0.6), transparent 70%),
     radial-gradient(50% 60% at 90% 0%, oklch(0.9 0.08 210 / 0.55), transparent 70%);
-  --shadow-soft-value: 0 1px 2px oklch(0.3 0.05 275 / 0.05), 0 8px 28px -10px oklch(0.3 0.08 275 / 0.16);
+  --shadow-soft-value:
+    0 1px 2px oklch(0.3 0.05 275 / 0.05), 0 8px 28px -10px oklch(0.3 0.08 275 / 0.16);
   --shadow-glow-value: 0 10px 30px -10px oklch(0.51 0.23 277 / 0.5);
   --chart-1: oklch(0.51 0.23 277);
   --chart-2: oklch(0.7 0.13 215);
@@ -126,7 +130,8 @@
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.68 0.18 277);
   --gradient-brand: linear-gradient(120deg, oklch(0.7 0.18 277), oklch(0.78 0.13 210));
-  --gradient-hero: radial-gradient(60% 70% at 15% 10%, oklch(0.4 0.15 277 / 0.45), transparent 70%),
+  --gradient-hero:
+    radial-gradient(60% 70% at 15% 10%, oklch(0.4 0.15 277 / 0.45), transparent 70%),
     radial-gradient(50% 60% at 90% 0%, oklch(0.45 0.1 210 / 0.35), transparent 70%);
   --shadow-soft-value: 0 1px 2px oklch(0 0 0 / 0.3), 0 10px 30px -12px oklch(0 0 0 / 0.6);
   --shadow-glow-value: 0 10px 30px -10px oklch(0.68 0.18 277 / 0.5);
