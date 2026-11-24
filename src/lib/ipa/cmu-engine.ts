@@ -50,7 +50,11 @@ export class CmuEngine implements PronunciationEngine {
 
     if (w.endsWith("'s") || (w.endsWith("s") && !w.endsWith("ss"))) {
       const stem = w.endsWith("'s") ? w.slice(0, -2) : w.slice(0, -1);
-      const extra = w.endsWith("ies") ? [w.slice(0, -3) + "y"] : w.endsWith("es") ? [w.slice(0, -2)] : [];
+      const extra = w.endsWith("ies")
+        ? [w.slice(0, -3) + "y"]
+        : w.endsWith("es")
+          ? [w.slice(0, -2)]
+          : [];
       const base = tryBase([stem, ...extra]);
       if (base) {
         const last = lastPhone(base);
@@ -60,10 +64,20 @@ export class CmuEngine implements PronunciationEngine {
     }
     if (w.endsWith("ed")) {
       const s = w.slice(0, -2);
-      const base = tryBase([s, s + "e", s.slice(0, -1), s.endsWith("i") ? s.slice(0, -1) + "y" : ""]);
+      const base = tryBase([
+        s,
+        s + "e",
+        s.slice(0, -1),
+        s.endsWith("i") ? s.slice(0, -1) + "y" : "",
+      ]);
       if (base) {
         const last = lastPhone(base);
-        const suf = last === "T" || last === "D" ? "IH0 D" : VOICELESS.has(last) || ["S", "SH", "CH"].includes(last) ? "T" : "D";
+        const suf =
+          last === "T" || last === "D"
+            ? "IH0 D"
+            : VOICELESS.has(last) || ["S", "SH", "CH"].includes(last)
+              ? "T"
+              : "D";
         return `${base} ${suf}`;
       }
     }
