@@ -11,7 +11,8 @@ export function formatPronunciation(pron: Pronunciation, opts: FormatOptions): s
   const multi = pron.syllables.length > 1;
   return pron.syllables
     .map((s, i) => {
-      const mark = opts.showStress && multi ? (s.stress === 1 ? "ˈ" : s.stress === 2 ? "ˌ" : "") : "";
+      const mark =
+        opts.showStress && multi ? (s.stress === 1 ? "ˈ" : s.stress === 2 ? "ˌ" : "") : "";
       const sep = i > 0 && opts.showSyllables && !mark ? "." : "";
       return sep + mark + s.ipa;
     })
@@ -39,7 +40,9 @@ export function tokenize(
 
 export function tokensToText(tokens: Token[], preservePunctuation: boolean): string {
   return tokens
-    .map((t) => (t.kind === "word" ? t.ipa : t.kind === "space" ? t.text : preservePunctuation ? t.text : ""))
+    .map((t) =>
+      t.kind === "word" ? t.ipa : t.kind === "space" ? t.text : preservePunctuation ? t.text : "",
+    )
     .join("")
     .normalize("NFC");
 }
@@ -92,6 +95,8 @@ export function compareTranscription(
     const correct = !!g && expected.some((e) => normalizeIpa(e, strictStress) === gn);
     return { word, expected: [...new Set(expected)], given: g, correct };
   });
-  const score = results.length ? Math.round((results.filter((r) => r.correct).length / results.length) * 100) : 0;
+  const score = results.length
+    ? Math.round((results.filter((r) => r.correct).length / results.length) * 100)
+    : 0;
   return { results, score };
 }

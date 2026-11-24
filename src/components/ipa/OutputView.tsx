@@ -11,14 +11,33 @@ interface Props {
   onSelect: (word: string) => void;
 }
 
-export const OutputView = memo(function OutputView({ tokens, preservePunctuation, highlightUnknown, selected, onSelect }: Props) {
+export const OutputView = memo(function OutputView({
+  tokens,
+  preservePunctuation,
+  highlightUnknown,
+  selected,
+  onSelect,
+}: Props) {
   return (
-    <div className="font-ipa whitespace-pre-wrap break-words text-xl leading-[2.1] md:text-2xl" lang="en-fonipa">
+    <div
+      className="font-ipa whitespace-pre-wrap break-words text-xl leading-[2.1] md:text-2xl"
+      lang="en-fonipa"
+    >
       {tokens.map((t, i) => {
         if (t.kind === "space") return <span key={i}>{t.text}</span>;
-        if (t.kind === "punct") return preservePunctuation ? <span key={i} className="text-muted-foreground">{t.text}</span> : null;
+        if (t.kind === "punct")
+          return preservePunctuation ? (
+            <span key={i} className="text-muted-foreground">
+              {t.text}
+            </span>
+          ) : null;
         if (!t.pron) {
-          if (!highlightUnknown) return <span key={i} className="text-muted-foreground">{t.text}</span>;
+          if (!highlightUnknown)
+            return (
+              <span key={i} className="text-muted-foreground">
+                {t.text}
+              </span>
+            );
           return (
             <Tooltip key={i}>
               <TooltipTrigger asChild>
