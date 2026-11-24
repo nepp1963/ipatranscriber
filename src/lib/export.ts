@@ -1,6 +1,8 @@
 export function downloadText(filename: string, content: string) {
   // BOM ensures Windows Notepad reads UTF-8 IPA symbols correctly.
-  const blob = new Blob(["\uFEFF" + content.normalize("NFC")], { type: "text/plain;charset=utf-8" });
+  const blob = new Blob(["\uFEFF" + content.normalize("NFC")], {
+    type: "text/plain;charset=utf-8",
+  });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
@@ -9,13 +11,15 @@ export function downloadText(filename: string, content: string) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-const esc = (s: string) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]!);
+const esc = (s: string) =>
+  s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]!);
 
 /** Opens a print-ready page; the browser's "Save as PDF" embeds the IPA font. */
 export function exportPdf(original: string, ipa: string, accentLabel: string) {
   const w = window.open("", "_blank");
   if (!w) return false;
-  w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>IPA Transcription</title>
+  w.document
+    .write(`<!doctype html><html><head><meta charset="utf-8"><title>IPA Transcription</title>
 <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:wght@400;700&display=swap" rel="stylesheet">
 <style>body{font-family:'Charis SIL','Doulos SIL','Noto Sans',serif;max-width:720px;margin:40px auto;padding:0 24px;color:#1b1b2f}
 h1{font-size:20px;margin:0 0 4px}small{color:#666}h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#555;margin-top:28px}

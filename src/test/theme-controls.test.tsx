@@ -19,7 +19,10 @@ describe("theme controls", () => {
     fireEvent.click(screen.getByRole("radio", { name: "Dark mode" }));
 
     await waitFor(() => {
-      expect(screen.getByRole("radio", { name: "Dark mode" })).toHaveAttribute("aria-checked", "true");
+      expect(screen.getByRole("radio", { name: "Dark mode" })).toHaveAttribute(
+        "aria-checked",
+        "true",
+      );
       expect(document.documentElement).toHaveClass("dark");
       expect(localStorage.getItem("ipa-theme")).toBe("dark");
     });
